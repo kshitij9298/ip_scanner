@@ -1,0 +1,26 @@
+import socket
+
+def dns_lookup(domain_name):
+    """
+    Looks up the DNS name for the given domain.
+
+    Args:
+        domain_name (str): The domain name to look up.
+
+    Returns:
+        str: The IP address of the domain name.
+    """
+    try:
+        ip_address = socket.gethostbyname(domain_name)
+    except socket.gaierror:
+        return None
+    return ip_address
+
+
+if __name__ == "__main__":
+    domain_name = input("Enter a domain name: ")
+    ip_address = dns_lookup(domain_name)
+    if ip_address is None:
+        print("Could not find the IP address for the domain name.")
+    else:
+        print("The IP address for {} is {}".format(domain_name, ip_address))
